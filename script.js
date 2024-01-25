@@ -6,6 +6,7 @@ var answerEl = document.querySelector("#answer");
 var statusEl = document.querySelector("#status");
 var secondsLeft = 75;
 var questionIndex = 0;
+var timerInterval;
 
 // Array of objects that contains questions, options, and the answers
 var questions = [
@@ -24,18 +25,16 @@ var questions = [
 challengeBtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
-
     // Removes the starting challenge button from index.html
     challengeBtn.style.display = "none";
     childEl.style.display = "none";
     startTimer();
     displayQuiz();
-    
 }
 
 function startTimer() { 
 
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
 
@@ -50,7 +49,6 @@ function startTimer() {
 function displayQuiz() {
 
     var presentQuestion = questions[questionIndex];
-
     parentEl.textContent = presentQuestion.question;
 
     // for loop to generate the option button for each answer, and calls on the checkAnswer function to check
@@ -59,21 +57,7 @@ function displayQuiz() {
         answerBtn.textContent = presentQuestion.options[i];
         answerEl.appendChild(answerBtn);
         answerBtn.addEventListener("click", checkAnswer);
-
     }
-
-    // var answerBtn = document.createElement("button");
-    // answerBtn.textContent = answer;
-    // answerEl.appendChild(answerBtn);
-
-    // var answerBtn2 = document.createElement("button");
-    // answerBtn2.textContent = answer2;
-    // answerEl.appendChild(answerBtn2);
-    
-    // answerBtn.addEventListener("click", checkAnswer);
-    // answerBtn2.addEventListener("click", checkAnswer);
-    
-
 }
 
 function checkAnswer(event) {
@@ -91,13 +75,10 @@ function checkAnswer(event) {
         secondsLeft-=10;
     }
 
-
     // setTimeout sets a timer, and executes the function below once the timer expires. Used to clear the correct/incorrect status
     setTimeout(function(){
         statusEl.textContent = "";
     }, 1000);
-
-
 
     // if else statement that runs displayQuiz function if there are still questions left
     if(questionIndex < questions.length) {
@@ -105,7 +86,13 @@ function checkAnswer(event) {
         displayQuiz();
         // or finishes the quiz
     } else {
-        console.log("Quiz Done");
+        done();
+        answerEl.textContent="";
     }
 }
 
+function done() {
+    parentEl.textContent = "CodeMcQuizzy Vanguished!";
+    childEl.style.display = "block";
+    childEl.textContent = "You defeated CodeMcQuizzy in " + secondsLeft + " seconds!";
+}
