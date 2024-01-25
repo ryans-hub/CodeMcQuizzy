@@ -4,7 +4,7 @@ var parentEl = document.querySelector("#parent");
 var childEl = document.querySelector("#child");
 var answerEl = document.querySelector("#answer");
 var statusEl = document.querySelector("#status");
-var secondsLeft = 50;
+var secondsLeft = 75;
 var questionIndex = 0;
 var timerInterval;
 
@@ -35,7 +35,6 @@ var questions = [
         options: ["myFunction()", "call myFunction()", "call function myFunction()", "myFunction"],
         answer: "myFunction()"
     }
-
 ];
 
 challengeBtn.addEventListener("click", startQuiz);
@@ -51,9 +50,9 @@ function startQuiz() {
 function startTimer() { 
 
     timerInterval = setInterval(function() {
-        secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
-
+        secondsLeft--;
+        
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
         }
