@@ -63,7 +63,9 @@ function startTimer() {
 
 function displayQuiz() {
 
+    // variable that is used to access the a question at an index, which is the first question, index 0
     var presentQuestion = questions[questionIndex];
+    // displays the question to user 
     parentEl.textContent = presentQuestion.question;
 
     // for loop to generate the option button for each answer, and calls on the checkAnswer function to check
@@ -77,7 +79,9 @@ function displayQuiz() {
 
 function checkAnswer(event) {
 
+    // gets the text content of the option the user clicked on
     var selected = event.target.textContent;
+    // variable that is assigned to grab the answer from the current question
     var correctAnswer = questions[questionIndex].answer;
 
     // if else statement that checks for correct answer, if so move onto next question 
