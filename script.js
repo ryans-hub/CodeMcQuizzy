@@ -3,6 +3,7 @@ var timeEl = document.querySelector(".time");
 var parentEl = document.querySelector("#parent");
 var childEl = document.querySelector("#child");
 var answerEl = document.querySelector("#answer");
+var statusEl = document.querySelector("#status");
 var secondsLeft = 75;
 var questionIndex = 0;
 
@@ -80,25 +81,28 @@ function checkAnswer(event) {
     var selected = event.target.textContent;
     var correctAnswer = questions[questionIndex].answer;
 
-
-
     // if else statement that checks for correct answer, if so move onto next question 
     if(selected === correctAnswer) {
-
-        console.log("correct");
+        statusEl.textContent = "Correct!";
         questionIndex++;
         // or if incorrect, minus 10 from the time left
     } else {
-        console.log("incorrect");
+        statusEl.textContent = "Incorrect!";
         secondsLeft-=10;
     }
 
+
+    // setTimeout sets a timer, and executes the function below once the timer expires. Used to clear the correct/incorrect status
+    setTimeout(function(){
+        statusEl.textContent = "";
+    }, 1000);
+
+
+
     // if else statement that runs displayQuiz function if there are still questions left
     if(questionIndex < questions.length) {
-
         answerEl.textContent="";
         displayQuiz();
-
         // or finishes the quiz
     } else {
         console.log("Quiz Done");
