@@ -12,6 +12,11 @@ var questions = [
         question: "Inside which HTML element do we put the JavaScript?",
         options: ["<script>", "<javascript>", "<js>", "<link>"],
         answer: "<script>"
+    },
+    {
+        question: "Where is the correct place to insert a JavaScript?",
+        options: ["The <body> section", "Both the <head> section and the <body> section are correct", "The <head> section"],
+        answer: "The <body> section"
     }
 ];
 
@@ -78,10 +83,21 @@ function checkAnswer(event) {
     if(selected === correctAnswer) {
 
         console.log("correct");
+        questionIndex++;
 
     } else {
         console.log("incorrect");
         secondsLeft-=10;
+    }
+
+
+    if(questionIndex < questions.length) {
+
+        answerEl.textContent="";
+        displayQuiz();
+
+    } else {
+        console.log("Quiz Done");
     }
 }
 
