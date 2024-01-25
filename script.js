@@ -1,10 +1,11 @@
 var challengeBtn = document.querySelector("#challenge");
-
 var timeEl = document.querySelector(".time");
-
-challengeBtn.addEventListener("click", startTimer);
-
+var questionEl = document.querySelector(".question");
 var secondsLeft = 75;
+
+var question = "What is my favorite color?";
+
+challengeBtn.addEventListener("click", startQuiz);
 
 function startTimer() { 
 
@@ -16,8 +17,18 @@ function startTimer() {
             clearInterval(timerInterval);
         }
 
-        
-    });
+    }, 1000);
 
+}
+
+function startQuiz() {
+    startTimer();
+    displayQuestion();
+}
+
+function displayQuestion() {
+
+    challengeBtn.textContent = question;
+    
 }
 
