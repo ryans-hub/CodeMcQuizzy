@@ -4,7 +4,7 @@ var parentEl = document.querySelector("#parent");
 var childEl = document.querySelector("#child");
 var answerEl = document.querySelector("#answer");
 var statusEl = document.querySelector("#status");
-var secondsLeft = 75;
+var secondsLeft = 50;
 var questionIndex = 0;
 var timerInterval;
 
@@ -19,7 +19,23 @@ var questions = [
         question: "Where is the correct place to insert a JavaScript?",
         options: ["The <body> section", "Both the <head> section and the <body> section are correct", "The <head> section"],
         answer: "The <body> section"
+    },
+    {
+        question: "How does a FOR loop start?",
+        options: ["for(i=0;i<=5;i++)", "for i=1 to 5", "for(i<=5;i++"],
+        answer: "for(i=0;i<=5;i++)"
+    },
+    {
+        question: "DOM stands for what?",
+        options: ["DOMINATION", "DOM PERIGNON", "Document Object Model"],
+        answer: "Document Object Model"
+    },
+    {
+        question: "How do you call a function named myFunction?",
+        options: ["myFunction()", "call myFunction()", "call function myFunction()", "myFunction"],
+        answer: "myFunction()"
     }
+
 ];
 
 challengeBtn.addEventListener("click", startQuiz);
@@ -91,6 +107,7 @@ function checkAnswer(event) {
     }
 }
 
+// function that executes when the quiz is finished, displays message and time left
 function done() {
     parentEl.textContent = "CodeMcQuizzy Vanguished!";
     childEl.style.display = "block";
