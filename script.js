@@ -80,22 +80,26 @@ function checkAnswer(event) {
     var selected = event.target.textContent;
     var correctAnswer = questions[questionIndex].answer;
 
+
+
+    // if else statement that checks for correct answer, if so move onto next question 
     if(selected === correctAnswer) {
 
         console.log("correct");
         questionIndex++;
-
+        // or if incorrect, minus 10 from the time left
     } else {
         console.log("incorrect");
         secondsLeft-=10;
     }
 
-
+    // if else statement that runs displayQuiz function if there are still questions left
     if(questionIndex < questions.length) {
 
         answerEl.textContent="";
         displayQuiz();
 
+        // or finishes the quiz
     } else {
         console.log("Quiz Done");
     }
